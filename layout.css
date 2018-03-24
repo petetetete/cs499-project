@@ -1,0 +1,116 @@
+html {
+    height: 100%;
+}
+
+body {
+    color: #111;
+    position: relative;
+    padding-bottom: 110px;
+    min-height: 100%;
+}
+
+.header__link
+{
+    outline: none;
+    transition: background-color .05s ease,
+                color .05s ease,
+                border-color .05s ease;
+}
+.header__link:hover,
+.header__link:focus
+{
+    transition: none;
+    text-decoration: none;
+}
+
+/* Fixed with center */
+.content, .header__center {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+.header {
+    background-color: #CB3837;
+    font-size: 1.375rem;
+
+    box-shadow: 0 1px 0 rgba(12,13,14,0.1),
+                0 1px 3px rgba(12,13,14,0.1),
+                0 4px 20px rgba(12,13,14,0.035),
+                0 1px 1px rgba(12,13,14,0.025);
+}
+    .header__center {
+        display: flex;
+        height: 60px;
+    }
+    .header__link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        color: #f1f3f9;
+        height: 100%;
+        font-weight: 300;
+        padding: 0 0.525rem;
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+    }
+    .header__link:hover {
+        color: #fff;
+        text-decoration: none;
+        border-bottom-color: #fff;
+    }
+    .header__link--home {
+        margin-right: auto;
+        font-size: 1.5rem;
+    }
+    .header__logo {
+        height: 1.375rem;
+        margin: 9px 6px 0 5px;
+    }
+
+.content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    font-size: 1.125rem;
+}
+    .content h1, .content h2, .content h3, .content h4 {
+        font-weight: 300;
+        margin-bottom: 1rem;
+    }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+    color: #555;
+}
+
+.content a, .footer a {
+    text-decoration: none;
+    color: #298cff;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: background-color cubic-bezier(.165, .84, .44, 1) .2s,
+                border-bottom cubic-bezier(.165, .84, .44, 1) .2s;
+}
+    .content a:hover, .content a:focus,
+    .footer a:hover, .footer a:focus {
+        border-bottom: 1px solid #298cff;
+        background-color: rgba(42,140,255,0.1);
+        outline: none;
+        transition: none;
+    }
+
+.content code > pre {
+    background-color: #f6f8fa;
+    padding: 0.75rem;
+    border: none;
+    font-size: 0.85rem;
+}
