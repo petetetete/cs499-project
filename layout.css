@@ -32,7 +32,7 @@ body {
 
 .header {
     background-color: #CB3837;
-    font-size: 1.375rem;
+    font-size: 1.275rem;
 
     box-shadow: 0 1px 0 rgba(12,13,14,0.1),
                 0 1px 3px rgba(12,13,14,0.1),
@@ -41,7 +41,42 @@ body {
 }
     .header__center {
         display: flex;
-        height: 60px;
+    }
+    .header__overflow::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 13px;
+        border-left: 4px solid #cb3837;
+        pointer-events: none;
+        z-index: 1;
+        background: -moz-linear-gradient(left, rgba(203,56,55,1) 0%, rgba(125,185,232,0) 100%);
+        background: -webkit-linear-gradient(left, rgba(203,56,55,1) 0%,rgba(125,185,232,0) 100%);
+        background: linear-gradient(to right, rgba(203,56,55,1) 0%,rgba(125,185,232,0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb3837', endColorstr='#007db9e8',GradientType=1 );
+    }
+    .header__overflow::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 13px;
+        border-right: 4px solid #cb3837;
+        pointer-events: none;
+        z-index: 1;
+        background: -moz-linear-gradient(left, rgba(125,185,232,0) 0%, rgba(203,56,55,1) 100%);
+        background: -webkit-linear-gradient(left, rgba(125,185,232,0) 0%,rgba(203,56,55,1) 100%);
+        background: linear-gradient(to right, rgba(125,185,232,0) 0%,rgba(203,56,55,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#cb3837',GradientType=1 );
+    }
+    .header__links {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
     .header__link {
         position: relative;
@@ -53,6 +88,7 @@ body {
         padding: 0 0.525rem;
         border-top: 2px solid transparent;
         border-bottom: 2px solid transparent;
+        height: 60px;
     }
     .header__link:hover {
         color: #fff;
@@ -113,4 +149,39 @@ body {
     padding: 0.75rem;
     border: none;
     font-size: 0.85rem;
+}
+
+
+@media (max-width: 769px) {
+
+    .header__center {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 0;
+    }
+
+    .header__link--home {
+        margin-left: auto;
+        margin-top: 1rem;
+        height: 40px;
+    }
+    .header__link--home:hover {
+        border-bottom-color: transparent;
+    }
+
+    .header__overflow {
+        position: relative;
+        height: 60px;
+        max-width: 100%;
+        margin-left: 0;
+        overflow: hidden;
+        padding: 0 4px;
+    }
+
+    .header__links {
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
 }
