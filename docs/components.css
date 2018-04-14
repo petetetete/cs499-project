@@ -39,6 +39,7 @@
         padding: 1rem 2rem;
     }
     .contact__descr > h3 {
+        margin-top: 0;
         margin-bottom: 0.5rem;
     }
     .contact__descr > p {
@@ -52,5 +53,23 @@
         height: 16px;
         margin-top: -16px;
     }
+
+}
+
+@media (max-width: 577px) {
+    
+    .contact {
+        flex-direction: column;
+        height: auto;
+        border-right: none;
+        border-bottom: 4px solid #CB3837;
+    }
+
+        .contact__img {
+            width: 100%;
+            height: auto;
+            border-top-right-radius: 6px;
+            border-bottom-left-radius: 0;
+        }
 
 }

@@ -7,6 +7,7 @@ body {
     position: relative;
     padding-bottom: 110px;
     min-height: 100%;
+    line-height: 1.75;
 }
 
 .header__link
@@ -86,6 +87,7 @@ body {
 }
     .content h1, .content h2, .content h3, .content h4 {
         font-weight: 300;
+        margin-top: 2rem;
         margin-bottom: 1rem;
     }
 
