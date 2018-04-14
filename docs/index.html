@@ -11,6 +11,7 @@
     <!-- Load stylesheets -->
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
 </head>
 <body>
     <div class="header">
@@ -20,10 +21,10 @@
             <div class="header__overflow">
                 <ul class="header__links">
                     <li><a class="header__link" href="#">Intro</a></li>
-                    <li><a class="header__link" href="#">Method</a></li>
-                    <li><a class="header__link" href="#">Visualization</a></li>
-                    <li><a class="header__link" href="#">Data</a></li>
-                    <li><a class="header__link" href="#">Team</a></li>
+                    <li><a class="header__link" href="#method">Method</a></li>
+                    <li><a class="header__link" href="#visualization">Visualization</a></li>
+                    <li><a class="header__link" href="#data">Data</a></li>
+                    <li><a class="header__link" href="#team">Team</a></li>
                 </ul>
             </div>
         </div>
@@ -50,6 +51,24 @@ def generate_anchor() -> "generate-anchor ga g":
   return ANCHOR_HOOK + final_hash[:hash_length]</pre></code>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, magni! Quam perferendis, minima eaque illum vitae temporibus libero atque, hic fugit cupiditate odit molestiae nesciunt et laudantium, numquam quae eligendi.</p>
 
+        <h1 id="team" class="a-target">The Team <a class="a-target__anchor" href="#team">#</a></h1>
+        <div class="contact">
+            <img src="images/peter.jpg" class="contact__img" />
+            <div class="contact__descr">
+                <h3>Peter Huettl</h3>
+                <p>Senior at NAU in the <i>Computer Science (BS)</i> program.</p>
+                <a href="mailto:ph289@nau.edu">ph289@nau.edu</a>
+            </div>
+        </div>
+
+        <div class="contact">
+            <img src="images/garrison.jpg" class="contact__img" />
+            <div class="contact__descr">
+                <h3>Garrison Smith</h3>
+                <p>Senior at NAU in the <i>Computer Science (BS)</i> program.</p>
+                <a href="mailto:gts35@nau.edu">gts35@nau.edu</a>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
