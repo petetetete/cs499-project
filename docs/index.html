@@ -21,8 +21,8 @@
             <div class="header__overflow">
                 <ul class="header__links">
                     <li><a class="header__link" href="#">Intro</a></li>
-                    <li><a class="header__link" href="#method">Method</a></li>
-                    <li><a class="header__link" href="#visualization">Visualization</a></li>
+                    <li><a class="header__link" href="#description">Description</a></li>
+                    <li><a class="header__link" href="#visualization">Visuals</a></li>
                     <li><a class="header__link" href="#data">Data</a></li>
                     <li><a class="header__link" href="#team">Team</a></li>
                 </ul>
@@ -32,17 +32,40 @@
 
     <div class="content">
 
+        <!-- Intro-->
         <h1>Introduction</h1>
         <p>How fragile is the modern web development ecosystem? How reliant are popular websites on external JavaScript libraries? These are a few of the common concerns present in modern day use of the web, <i>especially</i> for web developers in large companies. This is due to the fact that most websites rely on packages external to their codebase that are downloaded via a package manager such as <a href="https://npmjs.com">npm</a>.</p>
+
         <p>Although, these package managers provide an overall positive service to the web development community, there are <a href="http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm">several</a> different <a href="http://blog.npmjs.org/post/169582189317/incident-report-npm-inc-operations-incident-of">cases</a> of package outages causing development issues. These outages also effect the users of these large business sites. This is why we will be collecting data about the dependencies of these JavaScript packages, and analyzing several network metrics to assess the potential scale of this issue, or to discover any possible strategies one could use to mitigate the effect of these problems.</p>
+
         <p>For a more detailed description of our goal, see our initial <a href="documents/project_proposal.pdf">project proposal</a>.</p>
 
-        <h1 id="method" class="a-target">Methodology <a class="a-target__anchor" href="#method">#</a></h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nam quidem in repellat. Dolorum provident iure odio illum culpa rem possimus excepturi atque accusamus soluta animi totam quia, voluptatum repudiandae.</p>
 
+        <!-- Technical Description -->
+        <h1 id="description" class="a-target">Technical Description <a class="a-target__anchor" href="#description">#</a></h1>
+        <p>To begin addressing these questions, we needed to gather a meaningful data set and construct an appropriate network. Namely, we are interested in the JavaScript packages hosted on npm and their dependencies. In the following sections, we will outline how we have done this and why we have chosen to do it in this manner.</p>
+
+        <h2 id="method" class="a-target">Methodology <a class="a-target__anchor" href="#method">#</a></h2>
+        <p>Firstly, we needed to establish the fundemental network model of the network we were creating. It was clear that the <i>entities</i> of our network would represent packages hosted on npm. To create a network model that most directly addresses the original problems posed, we then established that the <i>relationships</i> in our network would denote one package depending on another. Because package dependencies is uni-directional, our network will be represented by a <i>directed graph</i>.</p>
+
+        <div class="figure">
+            <img src="images/model.png" class="figure__img" />
+            <span class="figure__descr">Miniature example of our network model</span>
+        </div>
+
+        <p></p>
+        
+
+
+        <h2 id="analysis" class="a-target">Analysis <a class="a-target__anchor" href="#analysis">#</a></h2>
+
+
+        <!-- Visualizations -->
         <h1 id="visualization" class="a-target">Visualizations <a class="a-target__anchor" href="#visualization">#</a></h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nam quidem in repellat. Dolorum provident iure odio illum culpa rem possimus excepturi atque accusamus soluta animi totam quia, voluptatum repudiandae.</p>
 
+
+        <!-- Data -->
         <h1 id="data" class="a-target">Data & Code <a class="a-target__anchor" href="#data">#</a></h1>
         <code><pre class="prettyprint lang-python">
 def generate_anchor() -> "generate-anchor ga g":
@@ -54,6 +77,8 @@ def generate_anchor() -> "generate-anchor ga g":
   return ANCHOR_HOOK + final_hash[:hash_length]</pre></code>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, magni! Quam perferendis, minima eaque illum vitae temporibus libero atque, hic fugit cupiditate odit molestiae nesciunt et laudantium, numquam quae eligendi.</p>
 
+
+        <!-- Team -->
         <h1 id="team" class="a-target">The Team <a class="a-target__anchor" href="#team">#</a></h1>
         <div class="contact">
             <img src="images/peter.jpg" class="contact__img" />
@@ -75,7 +100,7 @@ def generate_anchor() -> "generate-anchor ga g":
     </div>
 
     <div class="footer">
-        <a href="https://github.com/petetetete/cs499-project">GitHub Repo</a>
+        <a href="https://github.com/petetetete/cs499-project">Our GitHub Repo</a>
     </div>
 
     <!-- Library script references -->
