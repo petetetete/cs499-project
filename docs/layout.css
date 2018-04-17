@@ -111,7 +111,7 @@ body {
 
 .content a, .footer a {
     text-decoration: none;
-    color: #298cff;
+    color: #CB3837;
     font-weight: 500;
     border-bottom: 1px solid transparent;
     transition: background-color cubic-bezier(.165, .84, .44, 1) .2s,
@@ -119,8 +119,8 @@ body {
 }
     .content a:hover, .content a:focus,
     .footer a:hover, .footer a:focus {
-        border-bottom: 1px solid #298cff;
-        background-color: rgba(42,140,255,0.1);
+        border-bottom: 1px solid #CB3837;
+        background-color: rgba(203,56,55,0.1);
         outline: none;
         transition: none;
     }

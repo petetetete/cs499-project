@@ -20,7 +20,7 @@
 
             <div class="header__overflow">
                 <ul class="header__links">
-                    <li><a class="header__link" href="#">Intro</a></li>
+                    <li><a class="header__link" href="#intro">Intro</a></li>
                     <li><a class="header__link" href="#description">Description</a></li>
                     <li><a class="header__link" href="#visualization">Visuals</a></li>
                     <li><a class="header__link" href="#data">Data</a></li>
@@ -33,10 +33,10 @@
     <div class="content">
 
         <!-- Intro-->
-        <h1>Introduction</h1>
+        <h1 id="intro" class="a-target">Introduction</h1>
         <p>How fragile is the modern web development ecosystem? How reliant are popular websites on external JavaScript libraries? These are a few of the common concerns present in modern day use of the web, <i>especially</i> for web developers in large companies. This is due to the fact that most websites rely on packages external to their codebase that are downloaded via a package manager such as <a href="https://npmjs.com">npm</a>.</p>
 
-        <p>Although, these package managers provide an overall positive service to the web development community, there are <a href="http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm">several</a> different <a href="http://blog.npmjs.org/post/169582189317/incident-report-npm-inc-operations-incident-of">cases</a> of package outages causing development issues. These outages also effect the users of these large business sites. This is why we will be collecting data about the dependencies of these JavaScript packages, and analyzing several network metrics to assess the potential scale of this issue, or to discover any possible strategies one could use to mitigate the effect of these problems.</p>
+        <p>Although these package managers provide an overall positive service to the web development community, there are <a href="http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm">several</a> different <a href="http://blog.npmjs.org/post/169582189317/incident-report-npm-inc-operations-incident-of">cases</a> of package outages causing development issues. These outages also affect the users of these large business sites. This is why we will be collecting data about the dependencies of these JavaScript packages, and analyzing several network metrics to assess the potential scale of this issue, or to discover any possible strategies one could use to mitigate the effect of these problems.</p>
 
         <p>For a more detailed description of our goal, see our initial <a href="documents/project_proposal.pdf">project proposal</a>.</p>
 
@@ -46,19 +46,23 @@
         <p>To begin addressing these questions, we needed to gather a meaningful data set and construct an appropriate network. Namely, we are interested in the JavaScript packages hosted on npm and their dependencies. In the following sections, we will outline how we have done this and why we have chosen to do it in this manner.</p>
 
         <h2 id="method" class="a-target">Methodology <a class="a-target__anchor" href="#method">#</a></h2>
-        <p>Firstly, we needed to establish the fundemental network model of the network we were creating. It was clear that the <i>entities</i> of our network would represent packages hosted on npm. To create a network model that most directly addresses the original problems posed, we then established that the <i>relationships</i> in our network would denote one package depending on another. Because package dependencies is uni-directional, our network will be represented by a <i>directed graph</i>.</p>
+        <p>Firstly, we needed to establish the fundamental network model of the network we were creating. It was clear that the <i>entities</i> of our network would represent packages hosted on npm. To create a network model that most directly addresses the original problems posed, we then established that the <i>relationships</i> in our network would denote one package depending on another. Because package dependencies are uni-directional, our network will be represented by a <i>directed graph</i>.</p>
 
         <div class="figure">
             <img src="images/model.png" class="figure__img" />
             <span class="figure__descr">Miniature example of our network model</span>
         </div>
 
-        <p></p>
-        
+        <p>Next, we began collecting the data. Unfortunately, <a href="http://blog.npmjs.org/post/157615772423/deprecating-the-all-registry-endpoint">npm deprecated the use of the /-/all registry endpoint</a> which had previously served as a list of all packages currently hosted on npm. This, although reasonable as they have recently surpassed <a href="http://www.modulecounts.com/">600,000 packages</a>, meant that we were going to have to crawl and collect our own subset of packages. As such, we wrote an <a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_crawler.py">npm_crawler.py</a> script that crawled using a modified <i>Snowball Sampling</i> method.</p>
 
+        <p>Our sampling script would begin at a random package and iteratively crawl to dependencies and dependents, storing all associated package info and all found package names. This process would repeat until all connected packages were gathered, and then the search would restart from a random package. This ensured that we were also collecting the packages with no dependencies. More info regarding our data is available <a href="#data">below</a>.</p>
+
+        <p>There are several key network characteristics that we will focus on in our analysis of the network data. Namely, the <i>connectedness</i>, <i>clustering coefficient</i>, and identification of the <i>pivotal nodes</i>. Each of these characteristics provides a unique and valuable insight into the inter-reliance of packages and the impact of important nodes.</p>
+
+        <p>Although global graph characteristics are relevant to us, we are particularly interested in the identification of pivotal nodes due to the relationship they have with our original problem. A pivotal, or important, package is one that, if it were to fail, would cause the most damage to the most other packages. In this way, the existence or non-existence of these nodes will directly answer the question originally posed. As such, we will be analyzing several different kinds of node importance such as <i>dependence</i>, <i>exclusion</i>, and <i>betweenness centrality</i>.</p>
 
         <h2 id="analysis" class="a-target">Analysis <a class="a-target__anchor" href="#analysis">#</a></h2>
-
+        <p>[Under Construction]</p>
 
         <!-- Visualizations -->
         <h1 id="visualization" class="a-target">Visualizations <a class="a-target__anchor" href="#visualization">#</a></h1>
