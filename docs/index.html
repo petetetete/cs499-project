@@ -36,16 +36,16 @@
 
         <!-- Intro-->
         <h1 id="intro" class="a-target">Introduction</h1>
-        <p>How fragile is the modern web development ecosystem? How reliant are popular websites on external JavaScript libraries? These are a few of the common concerns present in modern day use of the web, <i>especially</i> for web developers in large companies. This is due to the fact that most websites rely on packages external to their codebase that are downloaded via a package manager such as <a href="https://npmjs.com">npm</a>.</p>
+        <p>How fragile is the modern web development ecosystem? How reliant are popular websites on external libraries? These are a few of the concerns present in modern web ecosystem, <i>especially</i> for web developers in large companies. This is due to the fact that almost all websites rely on external libraries that are downloaded by a package manager such as <a href="https://npmjs.com">npm</a>.</p>
 
-        <p>Although these package managers provide an overall positive service to the web development community, there are <a href="http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm">several</a> different <a href="http://blog.npmjs.org/post/169582189317/incident-report-npm-inc-operations-incident-of">cases</a> of package outages causing development issues. These outages also affect the users of these large business sites. This is why we will be collecting data about the dependencies of these JavaScript packages, and analyzing several network metrics to assess the potential scale of this issue, or to discover any possible strategies one could use to mitigate the effect of these problems.</p>
+        <p>Although these package managers provide an overall positive service to the web development community, there are <a href="http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm">several</a> different <a href="http://blog.npmjs.org/post/169582189317/incident-report-npm-inc-operations-incident-of">cases</a> of package outages causing development issues. These outages also affect the users of these large sites. This is why we will be collecting and analyzing data about the dependencies of these npm packages.</p>
 
-        <p>For a more detailed description of our goal, see our initial <a href="documents/project_proposal.pdf">project proposal</a>.</p>
+        <p><i>For a more detailed description of our goal, see our initial <a href="documents/project_proposal.pdf">project proposal</a>.</i></p>
 
 
         <!-- Technical Description -->
         <h1 id="description" class="a-target">Technical Description <a class="a-target__anchor" href="#description">#</a></h1>
-        <p>To begin addressing these questions, we needed to gather a meaningful data set and construct an appropriate network. Namely, we are interested in the JavaScript packages hosted on npm and their dependencies. In the following sections, we will outline how we have done this and why we have chosen to do it in this manner.</p>
+        <p>To begin addressing these questions, we first needed to gather a meaningful data set and construct an appropriate network. Namely, we are interested in the JavaScript packages hosted on npm and their dependencies. In the following sections, we will outline how we have done this and why we have chosen to do it in this manner.</p>
 
         <h2 id="method" class="a-target">Methodology <a class="a-target__anchor" href="#method">#</a></h2>
         <p>Firstly, we needed to establish the fundamental network model of the network we were creating. It was clear that the <i>entities</i> of our network would represent packages hosted on npm. To create a network model that most directly addresses the original problems posed, we then established that the <i>relationships</i> in our network would denote one package depending on another. Because package dependencies are uni-directional, our network will be represented by a <i>directed graph</i>.</p>
@@ -55,7 +55,7 @@
             <span class="figure__descr">Miniature example of our network&nbsp;model</span>
         </div>
 
-        <p>Next, we began collecting the data. Unfortunately, <a href="http://blog.npmjs.org/post/157615772423/deprecating-the-all-registry-endpoint">npm deprecated the use of the /-/all registry endpoint</a> which had previously served as a list of all packages currently hosted on npm. This, although reasonable as they have recently surpassed <a href="http://www.modulecounts.com/">600,000 packages</a>, meant that we were going to have to crawl and collect our own subset of packages. As such, we wrote an <a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_crawler.py">npm_crawler.py</a> script that crawled using a modified <i>Snowball Sampling</i> method.</p>
+        <p>Next, we began collecting the data. Unfortunately, <a href="http://blog.npmjs.org/post/157615772423/deprecating-the-all-registry-endpoint">npm deprecated the use of the /-/all registry endpoint</a> which had previously served as a list of all packages currently hosted on npm. This, although reasonable as they have recently surpassed <a href="http://www.modulecounts.com/">600,000 packages</a>, meant that we were going to have to crawl and collect our own subset of packages. As such, we wrote an <a href="https://github.com/petetetete/cs499-project/blob/master/src/npm_crawler.py">npm_crawler.py</a> script that crawled using a modified <i>Snowball Sampling</i> method.</p>
 
         <p>Our sampling script would begin at a random package and iteratively crawl to dependencies and dependents, storing all associated package info and all found package names. This process would repeat until all connected packages were gathered, and then the search would restart from a random package. This ensured that we were also collecting the packages with no dependencies. More info regarding our data is available <a href="#data">below</a>.</p>
 
@@ -85,15 +85,38 @@
 
         <!-- Data -->
         <h1 id="data" class="a-target">Data & Code <a class="a-target__anchor" href="#data">#</a></h1>
-        <code><pre class="prettyprint lang-python">
-def generate_anchor() -> "generate-anchor ga g":
+        <p>To improve the reproducibility of our conclusions, we have open sourced our crawler, data, and our Jupyter notebook (<a href="https://github.com/petetetete/cs499-project">our GitHub repo</a>). We created and ran our <a href="">[TODO] Jupyter notebook</a> in a Docker container that was set up with <a href="https://www.dataquest.io/blog/docker-data-science/">DataQuest's Data Science Environment</a> (specifically the <code>dataquestio/python3-starter</code> image). This environment includes:</p>
 
-  hash_length = 16
-  string_to_hash = str(time.time()) + "|" + str(random.uniform(0, 1))
-  final_hash = hashlib.md5(string_to_hash.encode("utf-8")).hexdigest()
+        <ul>
+            <li>python3</li>
+            <li>numpy</li>
+            <li>scipy</li>
+            <li>etc.</li>
+        </ul>
 
-  return ANCHOR_HOOK + final_hash[:hash_length]</pre></code>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, magni! Quam perferendis, minima eaque illum vitae temporibus libero atque, hic fugit cupiditate odit molestiae nesciunt et laudantium, numquam quae eligendi.</p>
+        <p>Our crawler has generated several different JSON data files that are hosted <a href="https://github.com/petetetete/cs499-project/tree/master/data">here</a>. This data is in its raw form in that it includes any possible information we thought could ever be valuable to our metrics. So, for example, at item in one of our JSON files will look as follows:</p>
+        
+        
+
+        <code><pre class="prettyprint lang-json">{
+    "author": {
+        "email": "sindresorhus@gmail.com",
+        "name": "Sindre Sorhus",
+        "url": "sindresorhus.com"
+    },
+    "dependencies": {
+        "time-zone": "^1.0.0"
+    },
+    "description": "Pretty datetime: `2014-01-09 06:46:01`",
+    "devDependencies": {
+        "ava": "*",
+        "xo": "*"
+    },
+    "license": "MIT",
+    "name": "date-time"
+}</pre></code>
+
+        <p>[Under Construction]</p>
 
 
         <!-- Team -->
