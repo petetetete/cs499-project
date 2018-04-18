@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="components.css">
 </head>
 <body>
-    <div class="header">
+    <div class="header" id="js-header">
         <div class="header__center">
             <a class="header__link header__link--home" href="#">An <svg class="header__logo" viewBox="0 0 18 7"><path fill="#CB3837" d="M0 0v6h5v1h4V6h9V0"></path><path fill="#FFF" d="M1 1v4h2V2h1v3h1V1h1v5h2V2h1v2H8v1h2V1h1v4h2V2h1v3h1V2h1v3h1V1"></path></svg> Network Analysis</a>
 
@@ -22,7 +22,7 @@
                 <ul class="header__links">
                     <li><a class="header__link" href="#intro">Intro</a></li>
                     <li><a class="header__link" href="#description">Description</a></li>
-                    <li><a class="header__link" href="#visualization">Visuals</a></li>
+                    <li><a class="header__link" href="#visualization">Visualizations</a></li>
                     <li><a class="header__link" href="#data">Data</a></li>
                     <li><a class="header__link" href="#team">Team</a></li>
                 </ul>
@@ -57,9 +57,21 @@
 
         <p>Our sampling script would begin at a random package and iteratively crawl to dependencies and dependents, storing all associated package info and all found package names. This process would repeat until all connected packages were gathered, and then the search would restart from a random package. This ensured that we were also collecting the packages with no dependencies. More info regarding our data is available <a href="#data">below</a>.</p>
 
-        <p>There are several key network characteristics that we will focus on in our analysis of the network data. Namely, the <i>connectedness</i>, <i>clustering coefficient</i>, and identification of the <i>pivotal nodes</i>. Each of these characteristics provides a unique and valuable insight into the inter-reliance of packages and the impact of important nodes.</p>
+        <p>There are several key network characteristics that we will focus on in our analysis of the network data. Each of the following characteristics provides a unique and valuable insight into the inter-reliance of packages and the impact of important nodes:</p>
 
-        <p>Although global graph characteristics are relevant to us, we are particularly interested in the identification of pivotal nodes due to the relationship they have with our original problem. A pivotal, or important, package is one that, if it were to fail, would cause the most damage to the most other packages. In this way, the existence or non-existence of these nodes will directly answer the question originally posed. As such, we will be analyzing several different kinds of node importance such as <i>dependence</i>, <i>exclusion</i>, and <i>betweenness centrality</i>.</p>
+        <ul>
+            <li>Connectedness</li>
+            <li>Clustering Coefficient</li>
+            <li>Pivotal Nodes</li>
+        </ul>
+
+        <p>Although global graph characteristics are relevant to us, we are particularly interested in the identification of pivotal nodes due to the relationship they have with our original problem. A pivotal, or important, package is one that, if it were to fail, would cause the most damage to the most other packages. In this way, the existence or non-existence of these nodes will directly answer the question originally posed. As such, we will be analyzing:</p>
+
+        <ul>
+            <li>Dependence</li>
+            <li>Exclusion</li>
+            <li>Betweenness Centrality</li>
+        </ul>
 
         <h2 id="analysis" class="a-target">Analysis <a class="a-target__anchor" href="#analysis">#</a></h2>
         <p>[Under Construction]</p>
@@ -107,8 +119,12 @@ def generate_anchor() -> "generate-anchor ga g":
         <a href="https://github.com/petetetete/cs499-project">Our GitHub Repo</a>
     </div>
 
+    <button class="back-to-top" id="js-backToTop" aria-label="Scroll back to top of page"><i class="fa fa-arrow-up"></i></button>
+
+
     <!-- Library script references -->
     <script defer src="libs/fontawesome/js/fontawesome-all.min.js"></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="layout.js"></script>
 </body>
 </html>
