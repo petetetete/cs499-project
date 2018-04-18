@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="components.css">
+
+    <link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <body>
     <div class="header" id="js-header">
@@ -50,7 +52,7 @@
 
         <div class="figure">
             <img src="images/model.png" class="figure__img" />
-            <span class="figure__descr">Miniature example of our network model</span>
+            <span class="figure__descr">Miniature example of our network&nbsp;model</span>
         </div>
 
         <p>Next, we began collecting the data. Unfortunately, <a href="http://blog.npmjs.org/post/157615772423/deprecating-the-all-registry-endpoint">npm deprecated the use of the /-/all registry endpoint</a> which had previously served as a list of all packages currently hosted on npm. This, although reasonable as they have recently surpassed <a href="http://www.modulecounts.com/">600,000 packages</a>, meant that we were going to have to crawl and collect our own subset of packages. As such, we wrote an <a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_crawler.py">npm_crawler.py</a> script that crawled using a modified <i>Snowball Sampling</i> method.</p>
