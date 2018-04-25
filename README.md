@@ -5,7 +5,7 @@ How fragile is the modern web development ecosystem? How reliant are popular web
 See our analysis and conclusions at our website [here](https://petetetete.github.io/cs499-project/).
 
 
-### The Team
+## The Team
 
 * Peter Huettl ([ph289@nau.edu](ph289@nau.edu))
 * Garrison Smith ([gts35@nau.edu](gts35@nau.edu))
