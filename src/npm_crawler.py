@@ -2,6 +2,7 @@ import urllib.request
 import json
 import string
 import random
+import sys
 
 
 class NpmCrawler:
@@ -10,8 +11,7 @@ class NpmCrawler:
     API_URL = "http://registry.npmjs.org/"
     DEFAULT_DATA_FILE = "npm_data.json"
     DEFAULT_AVOID_FILE = "npm_data_avoid.json"
-    DEFAULT_START_PACKAGE = "webpack"
-    DEFAULT_SAVE_INTERVAL = 20
+    DEFAULT_SAVE_INTERVAL = 50
     KEEP_KEYS = ["name", "author", "description",
                  "dependencies", "license",
                  "devDependencies"]
@@ -179,10 +179,10 @@ class NpmCrawler:
         return True
 
     def gather_package_data(self,
-                            start_package_name=DEFAULT_START_PACKAGE,
+                            start_package_name=None,
                             save_interval=DEFAULT_SAVE_INTERVAL,
-                            verbose=False,
-                            auto_continue=False):
+                            auto_continue=True,
+                            verbose=True):
         """Repeatedly searches for packages based on gathered info
 
         Parameters
@@ -199,6 +199,10 @@ class NpmCrawler:
         auto_continue : bool
             Whether or not the search should continue on dependency exhaustion
         """
+
+        # Initialize to random package name if none given
+        if start_package_name is None:
+            start_package_name = self.get_random_package()
 
         # Package count
         valid_found = 1
@@ -252,9 +256,30 @@ class NpmCrawler:
         print("Crawl completed.")
 
 
-# Test object
-crawler = NpmCrawler(pretty=False)
-crawler.gather_package_data("fhir2", 75, True, True)
+if __name__ == "__main__":
+
+    # If no parameters, run default conditions
+    if len(sys.argv) == 1:
+        crawler = NpmCrawler()
+        crawler.gather_package_data()
+        sys.exit()
+
+    # Catch missing parameters
+    if len(sys.argv) < 6:
+        print("usage: npm_crawler <data-file> <avoid-file> \
+<start-package> <save-interval> <auto-continue>")
+        sys.exit(-1)
+
+    # Get command line params (no error checking, just gonna believe)
+    data_file = sys.argv[1]
+    avoid_file = sys.argv[2]
+    start_package = sys.argv[3]
+    save_interval = int(sys.argv[4])
+    auto_continue = sys.argv[5] == "t"
+
+    crawler = NpmCrawler(data_file, avoid_file)
+    crawler.gather_package_data(start_package, save_interval)
+
 
 """
 NPM Package object format /{package}/latest
