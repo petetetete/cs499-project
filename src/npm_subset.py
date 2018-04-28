@@ -34,4 +34,4 @@ if __name__ == "__main__":
 
     # Write create edgelist
     with open(out_file, "w") as file:
-        file.writelines(random.sample(edges, 100))
+        file.writelines(random.sample(edges, size))
