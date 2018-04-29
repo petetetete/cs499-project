@@ -80,7 +80,11 @@
 
         <!-- Visualizations -->
         <h1 id="visualization" class="a-target">Visualizations <a class="a-target__anchor" href="#visualization">#</a></h1>
-        <p>We also wanted to visualize the sub-networks that we were creating to help understand the data that we had collected. To accomplish this, we plotted two of our sub-networks in a circular graph using a spring layout.</p>
+        <p>We also wanted to visualize the sub-networks that we were creating to help understand the data that we had collected. To accomplish this, we plotted two of our sub-networks in a circular graph using a spring layout. We also wanted to visualize some of the metrics we calculated in our analysis section, so we created charts.</p>
+
+        <h2 id="graphs" class="a-target">Graphs <a class="a-target__anchor" href="#graphs">#</a></h2>
+
+        <p>In the following graphs, the red circles denote the npm packages and the black lines are the dependencies between these packages. The edges in our graphs are directed because the dependency relationship between packages is usually uni-directional. Our graphs visualize this by denoting the in edges as thicker rectangles.</p>
 
         <div class="figures">
             <div class="figure">
@@ -94,7 +98,39 @@
             </div>
         </div>
 
-        <p>[Under Construction]</p>
+        <p>You may also notice that the ring of packages and inner circle area is more densely packed on the 1,000 edge sub-network. This is due to the fact that our sample included more dependencies, and as a consequence, more unique packages. But not all new packages were unique. You can tell in the visualizations that there are some packages more centered than the others as a consequence of more dependant packages.</p>
+
+        <p>For example, in the 500 edge sub-network, there is one isolated node in the center middle of the graph that has an increased number of in edges relative to its immediate neighbors. This is an example of a highly depend upon package.</p>
+
+        <h2 id="charts" class="a-target">Charts <a class="a-target__anchor" href="#charts">#</a></h2>
+
+        <p>As demonstrated in our analysis section, we calculated statistics on many different metrics of many different sub-networks. Although the table layout was relatively easy to parse, we also wanted to understand these characteristics and the trends they represent further. As such, we created several charts to highlight the change as the sample sizes increased.</p>
+
+        <div class="figures">
+            <div class="figure">
+                <img src="images/chart_neighbor_degree.png" class="figure__img" />
+                <span class="figure__descr">Increasing average neighbor degree</span>
+            </div>
+
+            <div class="figure">
+                <img src="images/chart_path_length.png" class="figure__img" />
+                <span class="figure__descr">Increasing average path length</span>
+            </div>
+        </div>
+
+        <div class="figures">
+            <div class="figure">
+                <img src="images/chart_degree_centrality.png" class="figure__img" />
+                <span class="figure__descr">Decreasing degree centrality</span>
+            </div>
+
+            <div class="figure">
+                <img src="images/chart_density.png" class="figure__img" />
+                <span class="figure__descr">Decreasing chart density</span>
+            </div>
+        </div>
+
+        <p>Note that there were two kinds of change on display in the metrics. The first group were metrics that increased alongside the increase in sub-network sample size (positive correlation). The second group were metrics that decreased while the sub-network sample size increased (negative correlation). Although initially strange, it makes sense that, for example, as the nubmer of depndencies increase, there are more likely to be straggler packages included, thus decreasing the density.</p>
 
 
         <!-- Data -->
