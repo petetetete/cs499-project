@@ -46,12 +46,21 @@
         margin-bottom: 0;
     }
 
+
+.figures {
+    display: flex;
+}
+
+
 .figure {
     margin: 1.5rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+    .figures > .figure:first-of-type {
+        margin-right: 16px;
+    }
     .figure__img {
         max-width: 100%;
     }
@@ -88,5 +97,9 @@
             border-top-right-radius: 6px;
             border-bottom-left-radius: 0;
         }
+
+    .figures {
+        flex-direction: column;
+    }
 
 }

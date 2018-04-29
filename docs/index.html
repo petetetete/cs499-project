@@ -80,12 +80,26 @@
 
         <!-- Visualizations -->
         <h1 id="visualization" class="a-target">Visualizations <a class="a-target__anchor" href="#visualization">#</a></h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nam quidem in repellat. Dolorum provident iure odio illum culpa rem possimus excepturi atque accusamus soluta animi totam quia, voluptatum repudiandae.</p>
+        <p>We also wanted to visualize the sub-networks that we were creating to help understand the data that we had collected. To accomplish this, we plotted two of our sub-networks in a circular graph using a spring layout.</p>
+
+        <div class="figures">
+            <div class="figure">
+                <img src="images/visual_500.png" class="figure__img" />
+                <span class="figure__descr">500 edge sub-network graphed</span>
+            </div>
+
+            <div class="figure">
+                <img src="images/visual_1000.png" class="figure__img" />
+                <span class="figure__descr">1,000 edge sub-network graphed</span>
+            </div>
+        </div>
+
+        <p>[Under Construction]</p>
 
 
         <!-- Data -->
         <h1 id="data" class="a-target">Data & Code <a class="a-target__anchor" href="#data">#</a></h1>
-        <p>To improve the reproducibility of our conclusions, we have open sourced our crawler, data, and our Jupyter notebook (<a href="https://github.com/petetetete/cs499-project">our GitHub repo</a>). We created and ran our <a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_analysis.ipynb">Jupyter notebook</a> in a Docker container that was set up with <a href="https://www.dataquest.io/blog/docker-data-science/">DataQuest's Data Science Environment</a> (specifically the <code>dataquestio/python3-starter</code> image). This environment includes:</p>
+        <p>To improve the reproducibility of our conclusions, we have open sourced our crawler, data, and our Jupyter notebook on <a href="https://github.com/petetetete/cs499-project">our GitHub repo</a>. For reproducibility, we created and ran our <a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_analysis.ipynb">Jupyter notebook</a> in a Docker container that was set up with <a href="https://www.dataquest.io/blog/docker-data-science/">DataQuest's Data Science Environment</a> (the <code>dataquestio/python3-starter</code> image). This environment includes:</p>
 
         <ul>
             <li>python3</li>
@@ -94,10 +108,8 @@
             <li>etc.</li>
         </ul>
 
-        <p>Our crawler has generated several different JSON data files that are hosted <a href="https://github.com/petetetete/cs499-project/tree/master/data">here</a>. This data is in its raw form in that it includes any possible information we thought could ever be valuable to our metrics. So, for example, an item in one of our JSON files would look as follows:</p>
+        <p>Our crawler has generated several different JSON data files that are hosted <a href="https://github.com/petetetete/cs499-project/tree/master/data">here</a>. This data is in its raw form in that it includes any possible information we thought could ever be valuable to our metrics. For example, an item in one of our JSON files would look as follows:</p>
         
-        
-
         <code><pre class="prettyprint lang-json">{
     "author": {
         "email": "sindresorhus@gmail.com",
@@ -116,7 +128,39 @@
     "name": "date-time"
 }</pre></code>
 
-        <p>[Under Construction]</p>
+        <p>We created two primary data sets, <a href="https://github.com/petetetete/cs499-project/tree/master/data/npm_data.json">npm_data.json</a> and <a href="https://github.com/petetetete/cs499-project/tree/master/data/npm_data_new.json">npm_data_new.json</a>. These files contained 16,515 and 10,310 packages respectively, each independently collected. The primary purpose of having two large data sets was to ensure we were collecting a wide array of packages rather than sticking in one area of the overall larger network.</p>
+        
+        <p>From these two parent data sets, we created 6 simple edgelist sub-samples:</p>
+
+        <ul>
+            <li><a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_sample_200.edgelist">200 dependencies edgelist</a></li>
+            <li><a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_sample_1000.edgelist">1000 dependencies edgelist</a></li>
+            <li><a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_sample_2000.edgelist">2000 dependencies edgelist</a></li>
+            <li><a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_sample_5000.edgelist">5000 dependencies edgelist</a></li>
+            <li><a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_sample_7000.edgelist">7000 dependencies edgelist</a></li>
+            <li><a href="https://github.com/petetetete/cs499-project/blob/master/data/npm_sample_10000.edgelist">10000 dependencies edgelist</a></li>
+        </ul>
+
+        <p>These edgelists were created using our <a href="https://github.com/petetetete/cs499-project/blob/master/src/npm_subset.py">npm_subset.py</a> script that was created specifically for this purpose. These were also the edgelists used in our analysis above.</p>
+
+        <h2 id="scripts" class="a-target">Our Scripts <a class="a-target__anchor" href="#scripts">#</a></h2>
+
+        <p>We created two main scripts to simplify the data collection and analysis process. We have mentioned and linked to them previously, so now we will provide a brief overview of their individual APIs and their capabilities.</p>
+
+        <a href="https://github.com/petetetete/cs499-project/blob/master/src/npm_crawler.py">npm_crawler.py</a>
+        <ul>
+            <li>&lt;data-file&gt; - Where to save the final data</li>
+            <li> &lt;avoid-file&gt; - Where to save faulty packages</li>
+            <li>&lt;save-interval&gt; - How many packages should be found before saving</li>
+            <li>&lt;auto-continue&gt; - Should the script automatically continue</li>
+        </ul>
+
+        <a href="https://github.com/petetetete/cs499-project/blob/master/src/npm_subset.py">npm_subset.py</a>
+        <ul>
+            <li>&lt;data-file&gt; - Where the data file to pull from is saved</li>
+            <li> &lt;out-file&gt; - Where to save the edgelist</li>
+            <li>&lt;size&gt; - How many dependencies to grab</li>
+        </ul>
 
 
         <!-- Team -->
