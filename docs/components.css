@@ -73,11 +73,25 @@
     }
 
 
+.columns {
+    display: flex;
+    margin-bottom: 1rem;
+}
+    .columns > ul {
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+
 @media (max-width: 800px) {
 
     .a-target::before {
         height: 16px;
         margin-top: -16px;
+    }
+
+    .columns {
+        flex-direction: column;
     }
 
 }

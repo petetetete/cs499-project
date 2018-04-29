@@ -76,7 +76,135 @@
         </ul>
 
         <h2 id="analysis" class="a-target">Analysis <a class="a-target__anchor" href="#analysis">#</a></h2>
-        <p>[Under Construction]</p>
+        <p>When it came time to analyze the data we had collected and properly saved into edgelists (<a href="#data">see our data</a>), we decided on 9 metrics to calculate due to their relevance to our question. These metrics were:</p>
+
+        <div class="columns">
+            <ul>
+                <li>Number of Nodes</li>
+                <li>Betweenness Centrality</li>
+                <li>Density</li>
+                <li>Transitivity</li>
+                <li>Average Path Length</li>
+            </ul>
+            <ul>
+                <li>Average Clustering Coefficient</li>
+                <li>Average Neighbor Degree</li>
+                <li>Average Closeness Centrality</li>
+                <li>Average Degree Centrality</li>
+            </ul>
+        </div>
+
+        <p>We calculated and collected these metrics with 6 different sizes of sub-networks. This was important to ensure the validity of the conclusions we were drawing and how they would scale. These sub-networks were of the following sizes:</p>
+
+        <div class="columns">
+            <ul>
+                <li>200 dependencies</li>
+                <li>1,000 dependencies</li>
+                <li>2,000 dependencies</li>
+            </ul>
+            <ul>
+                <li>5,000 dependencies</li>
+                <li>7,000 dependencies</li>
+                <li>10,000 dependencies</li>
+            </ul>
+        </div>
+
+        <p>We then aggregated all of this data into a table to ease the analysis process.</p>
+
+        <div style="overflow-x:auto;">
+            <table>
+                <tr>
+                    <th>Network Characteristic</th>
+                    <th>200 Edges</th>
+                    <th>1,000 Edges</th>
+                    <th>2,000 Edges</th>
+                    <th>5,000 Edges</th>
+                    <th>7,000 Edges</th>
+                    <th>10,000 Edges</th>
+                </tr>
+                <tr>
+                    <td># of Nodes</td>
+                    <td>353</td>
+                    <td>1402</td>
+                    <td>2493</td>
+                    <td>4617</td>
+                    <td>5638</td>
+                    <td>6595</td>
+                </tr>
+                <tr>
+                    <td>Betweenness Centrality</td>
+                    <td>2.1x10<sup>-7</sup></td>
+                    <td>7.1x10<sup>-8</sup></td>
+                    <td>7.7x10<sup>-8</sup></td>
+                    <td>5.3x10<sup>-7</sup></td>
+                    <td>4.5x10<sup>-6</sup></td>
+                    <td>2.1x10<sup>-5</sup></td>
+                </tr>
+                <tr>
+                    <td>Density</td>
+                    <td>0.0016</td>
+                    <td>0.0005</td>
+                    <td>0.0003</td>
+                    <td>0.0002</td>
+                    <td>0.0002</td>
+                    <td>0.0002</td>
+                </tr>
+                <tr>
+                    <td>Transitivity</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0.0012</td>
+                    <td>0.0053</td>
+                    <td>0.0074</td>
+                    <td>0.0120</td>
+                </tr>
+                <tr>
+                    <td>Avg. Path Length</td>
+                    <td>0.3879</td>
+                    <td>0.5298</td>
+                    <td>0.7607</td>
+                    <td>2.8633</td>
+                    <td>6.392</td>
+                    <td>7.7207</td>
+                </tr>
+                <tr>
+                    <td>Avg. Clustering Coefficient</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0.0001</td>
+                    <td>0.0018</td>
+                    <td>0.0043</td>
+                    <td>0.0114</td>
+                </tr>
+                <tr>
+                    <td>Avg. Neighbor Degree</td>
+                    <td>0.0255</td>
+                    <td>0.0879</td>
+                    <td>0.2574</td>
+                    <td>0.6898</td>
+                    <td>1.1954</td>
+                    <td>1.8215</td>
+                </tr>
+                <tr>
+                    <td>Avg. Closeness Centrality</td>
+                    <td>0.0016</td>
+                    <td>0.0005</td>
+                    <td>0.0004</td>
+                    <td>0.0004</td>
+                    <td>0.0008</td>
+                    <td>0.0028</td>
+                </tr>
+                <tr>
+                    <td>Avg. Degree Centrality</td>
+                    <td>0.0032</td>
+                    <td>0.001</td>
+                    <td>0.0006</td>
+                    <td>0.0005</td>
+                    <td>0.0004</td>
+                    <td>0.0005</td>
+                </tr>
+            </table>
+        </div>
 
         <!-- Visualizations -->
         <h1 id="visualization" class="a-target">Visualizations <a class="a-target__anchor" href="#visualization">#</a></h1>
@@ -84,7 +212,7 @@
 
         <h2 id="graphs" class="a-target">Graphs <a class="a-target__anchor" href="#graphs">#</a></h2>
 
-        <p>In the following graphs, the red circles denote the npm packages and the black lines are the dependencies between these packages. The edges in our graphs are directed because the dependency relationship between packages is usually uni-directional. Our graphs visualize this by denoting the in edges as thicker rectangles.</p>
+        <p>In the following graphs, the red circles denote the npm packages and the black lines are the dependencies between these packages. The edges in our graphs are directed because the dependency relationship between packages is usually uni-directional. Our graphs visualize this by denoting the in-edges as thicker rectangles.</p>
 
         <div class="figures">
             <div class="figure">
@@ -100,11 +228,11 @@
 
         <p>You may also notice that the ring of packages and inner circle area is more densely packed on the 1,000 edge sub-network. This is due to the fact that our sample included more dependencies, and as a consequence, more unique packages. But not all new packages were unique. You can tell in the visualizations that there are some packages more centered than the others as a consequence of more dependant packages.</p>
 
-        <p>For example, in the 500 edge sub-network, there is one isolated node in the center middle of the graph that has an increased number of in edges relative to its immediate neighbors. This is an example of a highly depend upon package.</p>
+        <p>For example, in the 500 edge sub-network, there is one isolated node in the center middle of the graph that has an increased number of in-edges relative to its immediate neighbors. This is an example of a highly depended-upon package.</p>
 
         <h2 id="charts" class="a-target">Charts <a class="a-target__anchor" href="#charts">#</a></h2>
 
-        <p>As demonstrated in our analysis section, we calculated statistics on many different metrics of many different sub-networks. Although the table layout was relatively easy to parse, we also wanted to understand these characteristics and the trends they represent further. As such, we created several charts to highlight the change as the sample sizes increased.</p>
+        <p>As demonstrated in our analysis section, we calculated statistics on many different metrics of many different sub-networks. Although the table layout was relatively easy to parse, we also wanted to understand these characteristics and the trends they represent further. As such, we created several charts to highlight change as the sample sizes increased.</p>
 
         <div class="figures">
             <div class="figure">
@@ -130,7 +258,7 @@
             </div>
         </div>
 
-        <p>Note that there were two kinds of change on display in the metrics. The first group were metrics that increased alongside the increase in sub-network sample size (positive correlation). The second group were metrics that decreased while the sub-network sample size increased (negative correlation). Although initially strange, it makes sense that, for example, as the nubmer of depndencies increase, there are more likely to be straggler packages included, thus decreasing the density.</p>
+        <p>Note that there were two kinds of change on display in the metrics. The first group was metrics that increased alongside the increase in sub-network sample size (positive correlation). The second group was metrics that decreased while the sub-network sample size increased (negative correlation). Although initially strange, it makes sense that, for example, as the number of dependencies increase, there are more likely to be straggler packages included, thus decreasing the density.</p>
 
 
         <!-- Data -->
@@ -221,7 +349,7 @@
     </div>
 
     <div class="footer">
-        <a href="https://github.com/petetetete/cs499-project">Our GitHub Repo</a>
+        <a href="https://github.com/petetetete/cs499-project">GitHub Repo</a>&nbsp;-&nbsp;<a href="documents/project_report.pdf">Project Report</a>
     </div>
 
     <button class="back-to-top" id="js-backToTop" aria-label="Scroll back to top of page"><i class="fa fa-arrow-up"></i></button>

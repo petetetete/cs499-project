@@ -95,6 +95,31 @@ body {
     .content h2 {
         margin-top: 1.75rem;
     }
+    .content table {
+        border-collapse: collapse;
+        text-align: center;
+        line-height: 1.375;
+    }
+    .content th, .content td {
+        border: 1px solid #cfcfcf;
+    }
+    .content th {
+        border-bottom-width: 2px;
+        border-top: none;
+        font-weight: 400;
+    }
+    .content th, .content td {
+        padding: 8px;
+    }
+    .content th:first-of-type, .content td:first-of-type {
+        border-left: none;
+    }
+    .content th:last-of-type, .content td:last-of-type {
+        border-right: none;
+    }
+    .content tr:last-of-type > td {
+        border-bottom: none;
+    }
 
 .footer {
     position: absolute;
