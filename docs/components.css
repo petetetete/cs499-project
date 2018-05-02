@@ -116,4 +116,8 @@
         flex-direction: column;
     }
 
+    .figures > .figure:first-of-type {
+        margin-right: 0;
+    }
+
 }
